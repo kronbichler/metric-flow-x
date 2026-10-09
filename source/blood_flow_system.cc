@@ -2094,6 +2094,7 @@ namespace MetricFlowX
 
     const unsigned int n_dofs = fe_->n_dofs_per_cell();
     Vector<double> cell_rhs(n_dofs);
+    std::vector<types::global_dof_index> ldofs(n_dofs);
 
     const double rho = par["rho"];
     const double eta = 2.0 * (par["xi"] + 2.0) * numbers::PI * par["mu"] / rho;
@@ -2107,7 +2108,6 @@ namespace MetricFlowX
         const unsigned int vid    = cell->material_id();
         fev.reinit(cell);
 
-        std::vector<types::global_dof_index> ldofs(n_dofs);
         cell->get_dof_indices(ldofs);
 
         const auto &JxW = fev.get_JxW_values();
