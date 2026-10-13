@@ -2092,8 +2092,8 @@ namespace MetricFlowX
     std::vector<double> Ahat_q(fef.n_quadrature_points);
     std::vector<double> Uhat_q(fef.n_quadrature_points);
 
-    const unsigned int n_dofs = fe_->n_dofs_per_cell();
-    Vector<double> cell_rhs(n_dofs);
+    const unsigned int                   n_dofs = fe_->n_dofs_per_cell();
+    Vector<double>                       cell_rhs(n_dofs);
     std::vector<types::global_dof_index> ldofs(n_dofs);
 
     const double rho = par["rho"];
@@ -2104,8 +2104,8 @@ namespace MetricFlowX
         if (!cell->is_locally_owned())
           continue;
 
-        const auto cell_id = cell->id();
-        const unsigned int vid    = cell->material_id();
+        const auto         cell_id = cell->id();
+        const unsigned int vid     = cell->material_id();
         fev.reinit(cell);
 
         cell->get_dof_indices(ldofs);
